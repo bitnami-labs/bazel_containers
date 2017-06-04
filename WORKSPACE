@@ -19,3 +19,9 @@ docker_pull(
     repository = "bitnami/minideb",
     tag = "jessie",
 )
+
+http_file(
+    name = "glibc",
+    sha256 = "bdf12aa461f2960251292c9dbfa2702d65105555b12cb36c6ac9bf8bea10b382",
+    url = "http://deb.debian.org/debian/pool/main/g/glibc/libc6_2.19-18+deb8u9_amd64.deb",
+)
