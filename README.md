@@ -16,3 +16,12 @@ Then
 ```
 docker run --rm -it bazel/nginx:nginx /bin/bash
 ```
+
+## TODO
+
+* Grab our debs and get them via `http_file` rule in WORKSPACE
+* Figure out a way to install our components (i.e `bitnami-pkg` / `nami` or not)
+
+## DOD
+
+Make a build, load the image, access nginx
