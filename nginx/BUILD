@@ -21,5 +21,5 @@ docker_build(
     volumes = ["/bitnami/nginx"],
     workdir = "/app",
     cmd = ["foobar.py"],
-    files = ["foobar.py"],
+    files = ["foobar.py", "@nginx_bitnami//file"],
 )
