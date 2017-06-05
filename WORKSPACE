@@ -27,6 +27,21 @@ http_file(
 )
 
 http_file(
+    name = "libpcre3",
+    url = "http://deb.debian.org/debian/pool/main/p/pcre3/libpcre3_8.39-3_amd64.deb",
+)
+
+http_file(
+    name = "libssl",
+    url = "http://deb.debian.org/debian/pool/main/o/openssl/libssl1.1-udeb_1.1.0e-2_amd64.udeb",
+)
+
+http_file(
+    name = "zlib1g",
+    url = "http://deb.debian.org/debian/pool/main/z/zlib/zlib1g_1.2.8.dfsg-5_amd64.deb",
+)
+
+http_file(
     name = "nginx_bitnami",
     sha256 ="0564f400f06ae1889a19fceb76dcda411edc0216dfd9c341cea46bde4a076ce5",
     url = "https://downloads.bitnami.com/files/stacksmith/nginx-1.12.0-1-linux-x64-debian-8.tar.gz",
