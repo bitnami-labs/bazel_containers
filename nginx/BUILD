@@ -15,7 +15,7 @@ docker_build(
         "BITNAMI_IMAGE_VERSION" : "1.12.0-r3",
         "NGINX_HTTPS_PORT_NUMBER" : "443",
         "NGINX_HTTP_PORT_NUMBER" : "80",
-        "PATH" : "/opt/bitnami/nginx/sbin/$PATH",
+        "PATH" : "/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/opt/bitnami/nginx/sbin/$PATH",
     },
     ports = ["80", "443"],
     volumes = ["/bitnami/nginx"],
