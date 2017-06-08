@@ -42,7 +42,23 @@ http_file(
 )
 
 http_file(
+    name = "libjemalloc",
+    url = "http://ftp.debian.org/debian/pool/main/j/jemalloc/libjemalloc1_3.6.0-9.1_amd64.deb",
+)
+
+http_file(
+    name = "libncurses",
+    url = "http://ftp.debian.org/debian/pool/main/n/ncurses/ncurses-bin_6.0+20170408-1_amd64.deb",
+)
+
+http_file(
     name = "nginx_bitnami",
     sha256 ="0564f400f06ae1889a19fceb76dcda411edc0216dfd9c341cea46bde4a076ce5",
     url = "https://downloads.bitnami.com/files/stacksmith/nginx-1.12.0-1-linux-x64-debian-8.tar.gz",
+)
+
+http_file(
+    name = "mariadb_bitnami",
+    sha256 ="67a92982a422d8d45d6ccf75a87b3f3ac1b7a1637e77196dd9759230c6789dfe",
+    url = "https://downloads.bitnami.com/files/stacksmith/mariadb-10.1.24-0-linux-x64-debian-8.tar.gz",
 )

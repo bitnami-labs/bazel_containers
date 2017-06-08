@@ -2,20 +2,37 @@
 
 Install [bazel](https://bazel.build/versions/master/docs/install.html)
 
-## build nginx [WIP]
+## nginx
 
 ```
 bazel build //nginx:nginx
 ```
 
-Then check the `bazel-bin` directory.
-You will see a script `bazel-bin/nginx/nginx` which will load the docker image.
-
-Then
+Then load the rootfs as an image
 
 ```
-docker run --rm -it --entrypoint /bin/bash bazel/nginx:nginx
+./bazel-bin/nginx/nginx
 ```
+
+Start the image
+
+```
+docker run -d -p 80:80 bazel/nginx:nginx
+```
+
+## mariadb
+
+```
+bazel build //mariadb:mariadb
+./bazel-bin/mariadb/mariadb
+```
+
+Run the image
+
+```
+docker run -d -p 3306:3306 --env ALLOW_EMPTY_PASSWORD=yes bazel/mariadb:mariadb
+```
+
 
 ## TODO
 
@@ -23,7 +40,3 @@ docker run --rm -it --entrypoint /bin/bash bazel/nginx:nginx
 
 Unzip and `nami unpack` in the entrypoint, ugly useless quick hack
 
-
-## DOD
-
-Make a build, load the image, access nginx - DONE
