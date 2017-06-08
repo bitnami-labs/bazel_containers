@@ -14,14 +14,16 @@ You will see a script `bazel-bin/nginx/nginx` which will load the docker image.
 Then
 
 ```
-docker run --rm -it bazel/nginx:nginx /bin/bash
+docker run --rm -it --entrypoint /bin/bash bazel/nginx:nginx
 ```
 
 ## TODO
 
-* Grab our debs and get them via `http_file` rule in WORKSPACE
 * Figure out a way to install our components (i.e `bitnami-pkg` / `nami` or not)
+
+Unzip and `nami unpack` in the entrypoint, ugly useless quick hack
+
 
 ## DOD
 
-Make a build, load the image, access nginx
+Make a build, load the image, access nginx - DONE

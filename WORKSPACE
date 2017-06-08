@@ -16,7 +16,7 @@ docker_repositories()
 docker_pull(
     name = "bitnami_minideb",
     registry ="index.docker.io",
-    repository = "bitnami/minideb",
+    repository = "bitnami/minideb-extras",
     tag = "jessie",
 )
 
