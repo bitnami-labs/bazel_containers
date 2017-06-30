@@ -1,4 +1,4 @@
-load("@io_bazel_rules_docker//docker:docker.bzl", "docker_build")
+load("@io_bazel_rules_docker//docker:docker.bzl", "docker_build", "docker_push")
 
 docker_build(
     name = "nginx",
@@ -26,4 +26,12 @@ docker_build(
              "run.sh", 
              "nginx-inputs.json",
              "@nginx_bitnami//file"],
+)
+
+docker_push(
+   name = "push_nginx",
+   image = ":nginx",
+   registry = "gcr.io",
+   repository = "skippbox/bazel",
+   tag = "dev",
 )
