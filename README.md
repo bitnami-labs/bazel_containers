@@ -20,6 +20,12 @@ Start the image
 docker run -d -p 80:80 bazel/nginx:nginx
 ```
 
+To push it to gcr.io:
+
+```
+bazel run //nginx:push_nginx
+```
+
 ## mariadb
 
 ```

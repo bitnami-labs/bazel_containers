@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bazel
+spec:
+  containers:
+  - image: busybox
+    command:
+    - sleep
+    - "3600"
+    name: bazel
+    volumeMounts:
+    - mountPath: /tmp/bazel
+      name: containers
+  volumes:
+  - name: containers
+    gitRepo:
+      repository: "https://github.com/bitnami/bazel_containers.git"

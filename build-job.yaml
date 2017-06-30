@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: bazel-build
+spec:
+  template:
+    metadata:
+      name: bazel
+    spec:
+      restartPolicy: Never
+      containers:
+      - image: gcr.io/skippbox/bazel
+        workingDir: /tmp/bazel/bazel_containers
+        command: ["bazel", "build", "//nginx:nginx"]
+        name: bazel
+        volumeMounts:
+        - mountPath: /tmp/bazel
+          name: containers
+      volumes:
+      - name: containers
+        gitRepo:
+          repository: "https://github.com/bitnami/bazel_containers.git"
