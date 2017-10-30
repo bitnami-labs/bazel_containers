@@ -1,3 +1,5 @@
+package(default_visibility = ["//visibility:public"])
+
 load("@io_bazel_rules_docker//container:container.bzl", "container_image")
 load("@package_bundle//file:packages.bzl", "packages")
 
@@ -9,6 +11,7 @@ container_image(
         packages["python2.7-minimal"],
         packages["libpython2.7-minimal"],
         packages["libpython2.7-stdlib"],
+        packages["python-pip"],
     ],
     entrypoint = [
         "/usr/bin/python2.7",

@@ -2,6 +2,26 @@
 
 Install [bazel](https://bazel.build/versions/master/docs/install.html)
 
+## Flask app
+
+```
+bazel build //flask:flask
+```
+
+the pip packages are actually loaded under WORKSPACE...
+
+## python image
+
+```
+bazel build //python:pybit
+```
+
+Then load the rootfs as an image:
+
+```
+./bazel-bin/python/pybit
+```
+
 ## nginx
 
 ```

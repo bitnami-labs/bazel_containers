@@ -10,6 +10,19 @@ git_repository(
     commit = "4a20649aac319b2ee2f9c058c6a100784904ce7d"
 )
 
+git_repository(
+    name = "io_bazel_rules_python",
+    remote = "https://github.com/bazelbuild/rules_python.git",
+    commit = "63cdc8f29b6e6ff517744756cc67cf05577ae724",
+)
+
+# Only needed for PIP support:
+load("@io_bazel_rules_python//python:pip.bzl",
+     "pip_repositories",
+     "pip_import")
+
+pip_repositories()
+
 load(
   "@io_bazel_rules_docker//container:container.bzl",
   "container_pull",
@@ -60,6 +73,7 @@ dpkg_list(
         "libpython2.7-minimal",
         "python2.7-minimal",
         "libpython2.7-stdlib",
+        "python-pip",
 
     ],
     sources = [
@@ -67,6 +81,26 @@ dpkg_list(
         "@debian_jessie_backports//file:Packages.json",
     ],
 )
+
+load(
+    "@io_bazel_rules_docker//python:image.bzl",
+    _py_image_repos = "repositories",
+)
+
+_py_image_repos()
+
+
+pip_import(
+    name = "flask_import",
+    requirements = "//flask:requirements.txt",
+)
+
+load(
+    "@flask_import//:requirements.bzl",
+    _flask_install = "pip_install",
+)
+
+_flask_install()
 
 http_file(
     name = "glibc",
