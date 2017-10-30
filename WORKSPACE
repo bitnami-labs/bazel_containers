@@ -1,23 +1,71 @@
 git_repository(
     name = "io_bazel_rules_docker",
     remote = "https://github.com/bazelbuild/rules_docker.git",
-    tag = "v0.0.1",
+    tag = "v0.3.0",
+)
+
+git_repository(
+    name = "distroless_rules",
+    remote = "https://github.com/googlecloudplatform/distroless.git",
+    commit = "4a20649aac319b2ee2f9c058c6a100784904ce7d"
 )
 
 load(
-  "@io_bazel_rules_docker//docker:docker.bzl",
-  "docker_repositories",
-  "docker_build",
-  "docker_pull",
+  "@io_bazel_rules_docker//container:container.bzl",
+  "container_pull",
+  "container_image",
+  container_repositories = "repositories",
 )
 
-docker_repositories()
+container_repositories()
 
-docker_pull(
+container_pull(
     name = "bitnami_minideb",
     registry ="index.docker.io",
     repository = "bitnami/minideb-extras",
     tag = "jessie",
+)
+
+load(
+    "@distroless_rules//package_manager:package_manager.bzl",
+    "package_manager_repositories",
+    "dpkg_src",
+    "dpkg_list",
+)
+
+package_manager_repositories()
+
+dpkg_src(
+    name = "debian_jessie",
+    arch = "amd64",
+    distro = "jessie",
+    sha256 = "142cceae78a1343e66a0d27f1b142c406243d7940f626972c2c39ef71499ce61",
+    snapshot = "20170821T035341Z",
+    url = "http://snapshot.debian.org/archive",
+)
+
+dpkg_src(
+    name = "debian_jessie_backports",
+    arch = "amd64",
+    distro = "jessie-backports",
+    sha256 = "eba769f0a0bcaffbb82a8b61d4a9c8a0a3299d5111a68daeaf7e50cc0f76e0ab",
+    snapshot = "20170821T035341Z",
+    url = "http://snapshot.debian.org/archive",
+)
+
+dpkg_list(
+    name = "package_bundle",
+    packages = [
+        #python
+        "libpython2.7-minimal",
+        "python2.7-minimal",
+        "libpython2.7-stdlib",
+
+    ],
+    sources = [
+        "@debian_jessie//file:Packages.json",
+        "@debian_jessie_backports//file:Packages.json",
+    ],
 )
 
 http_file(
